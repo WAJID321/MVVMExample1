@@ -39,14 +39,14 @@ public class MainActivity extends AppCompatActivity {
         mMainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
 
         mMainActivityViewModel.init();
-
+        // observe new items added? notify adapter.
         mMainActivityViewModel.getNicePlaces().observe(this, new Observer<List<NicePlace>>() {
             @Override
             public void onChanged(@Nullable List<NicePlace> nicePlaces) {
                 mAdapter.notifyDataSetChanged();
             }
         });
-
+        // Is updating or not?
         mMainActivityViewModel.getIsUpdating().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean aBoolean) {
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
